@@ -1,7 +1,9 @@
-package com.pratap.estore.product.controller;
+package com.pratap.estore.product.command.controller;
 
 import com.pratap.estore.product.command.CreateProductCommand;
 import com.pratap.estore.product.request.CreateProductRequestModel;
+import com.pratap.estore.product.utils.JsonPrettyPrint;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,33 +17,33 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
-public class ProductController {
+@Slf4j
+public class ProductCommandController {
 
     private final CommandGateway commandGateway;
 
     @Autowired
-    public ProductController(CommandGateway commandGateway){
+    public ProductCommandController(CommandGateway commandGateway){
         this.commandGateway = commandGateway;
-    }
-
-    @GetMapping
-    public String getProduct(){
-        return "Get Mapping";
     }
 
     @PostMapping
     public String createProduct(@RequestBody CreateProductRequestModel createProductRequestModel){
 
+        log.info("Executing createProduct(), with createProductRequestModel = {}", JsonPrettyPrint.prettyPrint(createProductRequestModel));
         CreateProductCommand createProductCommand = CreateProductCommand.builder()
                 .price(createProductRequestModel.getPrice())
                 .quantity(createProductRequestModel.getQuantity())
                 .title(createProductRequestModel.getTitle())
                 .productId(UUID.randomUUID().toString())
                 .build();
+
+        log.info("Build createProductCommand from createProductRequestModel, createProductCommand = {}", JsonPrettyPrint.prettyPrint(createProductCommand));
         String returnValue;
 
         try {
             returnValue = commandGateway.sendAndWait(createProductCommand);
+            log.info("returnValue =, {}", returnValue);
         } catch (CommandExecutionException exception){
             returnValue = exception.getLocalizedMessage();
             throw new CommandExecutionException("caught exception", exception);

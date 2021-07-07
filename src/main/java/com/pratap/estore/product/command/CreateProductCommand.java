@@ -6,6 +6,9 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.math.BigDecimal;
 
+/**
+ * This class kept the data related to command ie going to be saved.
+ */
 @Data
 @Builder
 public class CreateProductCommand {
