@@ -1,7 +1,8 @@
-package com.pratap.estore.product.query;
+package com.pratap.estore.product.query.handlers;
 
 import com.pratap.estore.product.data.ProductEntity;
-import com.pratap.estore.product.data.ProductRepository;
+import com.pratap.estore.product.data.repository.ProductRepository;
+import com.pratap.estore.product.query.FindProductQuery;
 import com.pratap.estore.product.responce.ProductResponseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.queryhandling.QueryHandler;

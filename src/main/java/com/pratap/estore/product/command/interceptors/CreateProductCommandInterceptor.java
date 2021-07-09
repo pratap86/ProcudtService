@@ -1,6 +1,8 @@
 package com.pratap.estore.product.command.interceptors;
 
 import com.pratap.estore.product.command.CreateProductCommand;
+import com.pratap.estore.product.data.ProductLookupEntity;
+import com.pratap.estore.product.data.repository.ProductLookupRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
@@ -18,6 +20,12 @@ import java.util.function.BiFunction;
 @Component
 public class CreateProductCommandInterceptor implements MessageDispatchInterceptor<CommandMessage<?>> {
 
+    private final ProductLookupRepository productLookupRepository;
+
+    public CreateProductCommandInterceptor(ProductLookupRepository productLookupRepository){
+        this.productLookupRepository = productLookupRepository;
+    }
+
     @Override
     public BiFunction<Integer, CommandMessage<?>, CommandMessage<?>> handle(List<? extends CommandMessage<?>> messages) {
         return (index, command) -> {
@@ -26,14 +34,14 @@ public class CreateProductCommandInterceptor implements MessageDispatchIntercept
             if (CreateProductCommand.class.equals(command.getPayloadType())){
 
                 CreateProductCommand createProductCommand = (CreateProductCommand) command.getPayload();
-                if (createProductCommand.getPrice().compareTo(BigDecimal.ZERO) <= 0){
-                    log.error("BAD Request", new IllegalArgumentException("Price can not be less or equal to be zero"));
-                    throw new IllegalArgumentException("Price can not be less or equal to be zero");
-                }
-                if (createProductCommand.getTitle() == null
-                        || createProductCommand.getTitle().isBlank()){
-                    log.error("BAD Request", new IllegalArgumentException("Title can not be empty"));
-                    throw new IllegalArgumentException("Title can not be empty");
+
+                ProductLookupEntity productLookupEntity = productLookupRepository.findByProductIdOrTitle(createProductCommand.getProductId(), createProductCommand.getTitle());
+
+                if (productLookupEntity != null){
+                    throw new IllegalStateException(
+                            String.format("Product with productId %s or title %s already exist",
+                                    productLookupEntity.getProductId(), productLookupEntity.getTitle())
+                    );
                 }
             }
             return command;
