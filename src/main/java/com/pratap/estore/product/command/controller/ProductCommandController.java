@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -28,7 +29,7 @@ public class ProductCommandController {
     }
 
     @PostMapping
-    public String createProduct(@RequestBody CreateProductRequestModel createProductRequestModel){
+    public String createProduct(@Valid @RequestBody CreateProductRequestModel createProductRequestModel){
 
         log.info("Executing createProduct(), with createProductRequestModel = {}", JsonPrettyPrint.prettyPrint(createProductRequestModel));
         CreateProductCommand createProductCommand = CreateProductCommand.builder()
