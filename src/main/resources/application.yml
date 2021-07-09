@@ -30,6 +30,17 @@ eureka:
 
 server:
   port: 0
+  # Bean validation
+  error:
+    include-message: always
+    include-binding-errors: always
+
+#
+axon:
+  eventhandling:
+    processors:
+      product-group:
+        mode: subscribing
 
 
 
