@@ -3,7 +3,7 @@ package com.pratap.estore.product.query.handlers;
 import com.pratap.estore.product.core.data.ProductEntity;
 import com.pratap.estore.product.core.data.repository.ProductRepository;
 import com.pratap.estore.product.query.FindProductQuery;
-import com.pratap.estore.product.responce.ProductResponseModel;
+import com.pratap.estore.product.model.responce.ProductResponseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
