@@ -1,6 +1,6 @@
 package com.pratap.estore.product.command.interceptors;
 
-import com.pratap.estore.product.command.CreateProductCommand;
+import com.pratap.estore.product.command.commands.CreateProductCommand;
 import com.pratap.estore.product.core.data.ProductLookupEntity;
 import com.pratap.estore.product.core.data.repository.ProductLookupRepository;
 import lombok.extern.slf4j.Slf4j;

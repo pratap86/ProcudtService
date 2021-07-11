@@ -1,6 +1,6 @@
 package com.pratap.estore.product.command.controller;
 
-import com.pratap.estore.product.command.CreateProductCommand;
+import com.pratap.estore.product.command.commands.CreateProductCommand;
 import com.pratap.estore.product.model.request.CreateProductRequestModel;
 import com.pratap.estore.product.utils.JsonPrettyPrint;
 import lombok.extern.slf4j.Slf4j;

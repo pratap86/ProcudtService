@@ -1,5 +1,6 @@
 package com.pratap.estore.product.command;
 
+import com.pratap.estore.product.command.commands.CreateProductCommand;
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
 import com.pratap.estore.product.utils.JsonPrettyPrint;
 import lombok.extern.slf4j.Slf4j;
