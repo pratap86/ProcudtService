@@ -29,7 +29,7 @@ public class ProductCommandController {
     }
 
     @PostMapping
-    public String createProduct(@RequestBody CreateProductRequestModel createProductRequestModel){
+    public String createProduct(@Valid @RequestBody CreateProductRequestModel createProductRequestModel){
 
         log.info("Executing createProduct(), with createProductRequestModel = {}", JsonPrettyPrint.prettyPrint(createProductRequestModel));
         CreateProductCommand createProductCommand = CreateProductCommand.builder()
