@@ -1,4 +1,4 @@
-package com.pratap.estore.product.data;
+package com.pratap.estore.product.core.data;
 
 import lombok.Data;
 
@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductEntity implements Serializable {
 
+    private static final long serialVersionUID = 4877296255140627692L;
     @Id
     @Column(unique = true)
     private String productId;

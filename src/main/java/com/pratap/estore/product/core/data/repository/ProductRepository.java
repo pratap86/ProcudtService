@@ -1,6 +1,6 @@
-package com.pratap.estore.product.data.repository;
+package com.pratap.estore.product.core.data.repository;
 
-import com.pratap.estore.product.data.ProductEntity;
+import com.pratap.estore.product.core.data.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

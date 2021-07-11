@@ -1,7 +1,7 @@
 package com.pratap.estore.product.query.controller;
 
 import com.pratap.estore.product.query.FindProductQuery;
-import com.pratap.estore.product.responce.ProductResponseModel;
+import com.pratap.estore.product.model.responce.ProductResponseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;

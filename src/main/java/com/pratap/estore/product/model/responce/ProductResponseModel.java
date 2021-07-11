@@ -1,4 +1,4 @@
-package com.pratap.estore.product.responce;
+package com.pratap.estore.product.model.responce;
 
 import lombok.Data;
 

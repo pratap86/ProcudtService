@@ -1,8 +1,8 @@
 package com.pratap.estore.product.command.handlers;
 
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
-import com.pratap.estore.product.data.ProductLookupEntity;
-import com.pratap.estore.product.data.repository.ProductLookupRepository;
+import com.pratap.estore.product.core.data.ProductLookupEntity;
+import com.pratap.estore.product.core.data.repository.ProductLookupRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;

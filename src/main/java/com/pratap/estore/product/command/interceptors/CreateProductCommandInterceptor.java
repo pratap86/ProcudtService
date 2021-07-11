@@ -1,14 +1,13 @@
 package com.pratap.estore.product.command.interceptors;
 
-import com.pratap.estore.product.command.CreateProductCommand;
-import com.pratap.estore.product.data.ProductLookupEntity;
-import com.pratap.estore.product.data.repository.ProductLookupRepository;
+import com.pratap.estore.product.command.commands.CreateProductCommand;
+import com.pratap.estore.product.core.data.ProductLookupEntity;
+import com.pratap.estore.product.core.data.repository.ProductLookupRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.BiFunction;
 

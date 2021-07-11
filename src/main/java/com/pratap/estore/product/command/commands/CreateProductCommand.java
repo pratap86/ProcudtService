@@ -1,4 +1,4 @@
-package com.pratap.estore.product.command;
+package com.pratap.estore.product.command.commands;
 
 import lombok.Builder;
 import lombok.Data;
