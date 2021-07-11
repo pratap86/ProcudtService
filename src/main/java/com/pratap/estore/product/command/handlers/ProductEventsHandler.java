@@ -1,8 +1,8 @@
-package com.pratap.estore.product.query.handlers;
+package com.pratap.estore.product.command.handlers;
 
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
-import com.pratap.estore.product.data.ProductEntity;
-import com.pratap.estore.product.data.repository.ProductRepository;
+import com.pratap.estore.product.core.data.ProductEntity;
+import com.pratap.estore.product.core.data.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
@@ -23,6 +23,7 @@ public class ProductEventsHandler {
     public ProductEventsHandler(ProductRepository productRepository){
         this.productRepository = productRepository;
     }
+
     @EventHandler
     public void on(ProductCreatedEvent productCreatedEvent){
 

@@ -1,4 +1,4 @@
-package com.pratap.estore.product.data;
+package com.pratap.estore.product.core.data;
 
 import lombok.Data;
 

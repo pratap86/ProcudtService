@@ -40,15 +40,7 @@ public class ProductCommandController {
                 .build();
 
         log.info("Build createProductCommand from createProductRequestModel, createProductCommand = {}", JsonPrettyPrint.prettyPrint(createProductCommand));
-        String returnValue;
 
-        try {
-            returnValue = commandGateway.sendAndWait(createProductCommand);
-            log.info("returnValue =, {}", returnValue);
-        } catch (CommandExecutionException exception){
-            returnValue = exception.getLocalizedMessage();
-            throw new CommandExecutionException("caught exception", exception);
-        }
-        return returnValue;
+        return commandGateway.sendAndWait(createProductCommand);
     }
 }
