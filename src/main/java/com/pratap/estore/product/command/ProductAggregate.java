@@ -1,5 +1,7 @@
 package com.pratap.estore.product.command;
 
+import com.pratap.estore.core.commands.ProductReservedCommand;
+import com.pratap.estore.core.events.ProductReservedEvent;
 import com.pratap.estore.product.command.commands.CreateProductCommand;
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
 import com.pratap.estore.product.utils.JsonPrettyPrint;
@@ -64,5 +66,26 @@ public class ProductAggregate {
             this.price = productCreatedEvent.getPrice();
             this.title = productCreatedEvent.getTitle();
             this.quantity = productCreatedEvent.getQuantity();
+    }
+
+    @CommandHandler
+    public void handle(ProductReservedCommand productReservedCommand){
+
+        if (quantity < productReservedCommand.getQuantity())
+            throw new IllegalArgumentException("Insufficient number of items in stock");
+
+        ProductReservedEvent reserveProductEvent = ProductReservedEvent.builder()
+                .orderId(productReservedCommand.getOrderId())
+                .productId(productReservedCommand.getProductId())
+                .quantity(productReservedCommand.getQuantity())
+                .userId(productReservedCommand.getUserId())
+                .build();
+
+        AggregateLifecycle.apply(reserveProductEvent);
+    }
+
+    @EventSourcingHandler
+    public void on(ProductReservedEvent productReservedEvent){
+        this.quantity -= productReservedEvent.getQuantity();
     }
 }
