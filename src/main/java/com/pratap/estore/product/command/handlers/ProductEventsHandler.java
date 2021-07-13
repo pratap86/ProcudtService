@@ -3,6 +3,7 @@ package com.pratap.estore.product.command.handlers;
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
 import com.pratap.estore.product.core.data.ProductEntity;
 import com.pratap.estore.product.core.data.repository.ProductRepository;
+import com.pratap.estore.shared.events.ProductReservedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
@@ -34,5 +35,18 @@ public class ProductEventsHandler {
 
         log.info("calling ProductRepository save() with productEntity = {}", productEntity);
         productRepository.save(productEntity);
+    }
+
+    // update the read data base
+    @EventHandler
+    public void on(ProductReservedEvent productReservedEvent){
+
+        log.info("ProductReservedEvent is called for orderId={}", productReservedEvent.getOrderId());
+
+        ProductEntity productEntity = productRepository.getById(productReservedEvent.getProductId());
+        productEntity.setQuantity(productEntity.getQuantity() - productReservedEvent.getQuantity());
+        log.info("Going to update read data base by on() with productReservedEvent={}", productReservedEvent);
+        productRepository.save(productEntity);
+
     }
 }

@@ -1,10 +1,10 @@
 package com.pratap.estore.product.command;
 
-import com.pratap.estore.core.commands.ProductReservedCommand;
-import com.pratap.estore.core.events.ProductReservedEvent;
 import com.pratap.estore.product.command.commands.CreateProductCommand;
 import com.pratap.estore.product.core.events.ProductCreatedEvent;
 import com.pratap.estore.product.utils.JsonPrettyPrint;
+import com.pratap.estore.shared.commands.ProductReservedCommand;
+import com.pratap.estore.shared.events.ProductReservedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
