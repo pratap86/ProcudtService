@@ -38,10 +38,10 @@ public class ProductAggregate {
         // validate createProductCommand
         validateCreateProductCommand(createProductCommand);
 
-        // publish the product create event
         ProductCreatedEvent productCreatedEvent = new ProductCreatedEvent();
         BeanUtils.copyProperties(createProductCommand, productCreatedEvent);
 
+        // publish the product create event
         AggregateLifecycle.apply(productCreatedEvent);
     }
 
